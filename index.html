@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join the night | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400&family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --canvas: #05060f;
+            --headline: #d8ecf8;
+            --body: #d1e4fa;
+            --muted: #9da7ba;
+            --edge: rgba(186, 215, 247, 0.12);
+            --glass: rgba(186, 214, 247, 0.04);
+            --violet: #663af3;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            color: var(--body);
+            background:
+                linear-gradient(rgba(186, 215, 247, 0.045) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(186, 215, 247, 0.045) 1px, transparent 1px),
+                radial-gradient(circle at 50% 0%, rgba(93, 111, 160, 0.24), transparent 42%),
+                var(--canvas);
+            background-size: 80px 80px, 80px 80px, auto, auto;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        main {
+            display: grid;
+            place-items: center;
+            min-height: 100vh;
+            padding: 48px 20px;
+        }
+
+        .form-card {
+            width: min(100%, 520px);
+            padding: clamp(28px, 6vw, 48px);
+            background: rgba(5, 6, 15, 0.88);
+            border-radius: 16px;
+            box-shadow: inset 0 1px 1px rgba(216, 236, 248, 0.2),
+                inset 0 24px 48px rgba(168, 216, 245, 0.06),
+                0 24px 48px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(16px);
+        }
+
+        .eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 0 0 20px;
+            color: var(--muted);
+            font-family: 'DM Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before,
+        .eyebrow::after {
+            height: 1px;
+            flex: 1;
+            content: '';
+            background: linear-gradient(90deg, transparent, var(--edge));
+        }
+
+        .eyebrow::after { transform: rotate(180deg); }
+
+        h1 {
+            margin: 0;
+            color: var(--headline);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(32px, 7vw, 48px);
+            font-weight: 500;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        .intro {
+            margin: 14px 0 32px;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        form { display: grid; gap: 20px; }
+
+        .field { display: grid; gap: 8px; }
+
+        label,
+        legend {
+            color: var(--body);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            border: 0;
+            border-radius: 6px;
+            outline: 0;
+            padding: 12px 14px;
+            color: #fff;
+            background: rgba(199, 211, 234, 0.06);
+            box-shadow: inset 0 0 0 1px var(--edge);
+            font: inherit;
+            font-size: 14px;
+            transition: box-shadow 160ms ease, background 160ms ease;
+        }
+
+        input::placeholder,
+        textarea::placeholder { color: rgba(199, 211, 234, 0.52); }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            background: rgba(199, 211, 234, 0.09);
+            box-shadow: inset 0 0 0 1px rgba(186, 215, 247, 0.3), 0 0 0 3px rgba(102, 58, 243, 0.16);
+        }
+
+        textarea { min-height: 92px; resize: vertical; }
+
+        select { appearance: none; }
+
+        fieldset {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 18px;
+            margin-top: 10px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 400;
+        }
+
+        .radio-option input {
+            width: 15px;
+            height: 15px;
+            margin: 0;
+            accent-color: var(--violet);
+            box-shadow: none;
+        }
+
+        .split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        button {
+            margin-top: 8px;
+            border: 0;
+            border-radius: 6px;
+            padding: 13px 24px;
+            color: #fff;
+            background: var(--violet);
+            box-shadow: 0 8px 24px rgba(102, 58, 243, 0.25);
+            cursor: pointer;
+            font: inherit;
+            font-size: 14px;
+            font-weight: 700;
+            transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+        }
+
+        button:hover { background: #7652f5; box-shadow: 0 10px 30px rgba(102, 58, 243, 0.38); }
+        button:active { transform: translateY(1px); }
+
+        @media (max-width: 480px) {
+            main { padding: 24px 14px; }
+            .form-card { padding: 28px 20px; }
+            .split { grid-template-columns: 1fr; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section class="form-card" aria-labelledby="form-title">
+            <p class="eyebrow">Create your profile</p>
+            <h1 id="form-title">Welcome to the night.</h1>
+            <p class="intro">A simple space to share a little about yourself.</p>
+
+            <form action="https://www.amazon.in/ref=nav_logo">
+                <div class="field">
+                    <label for="username">Full name</label>
+                    <input id="username" name="username" type="text" placeholder="Your full name" required>
+                </div>
+
+                <div class="split">
+                    <div class="field">
+                        <label for="useremail">Email address</label>
+                        <input id="useremail" name="useremail" type="email" placeholder="you@example.com" required>
+                    </div>
+                    <div class="field">
+                        <label for="mb">Mobile number</label>
+                        <input id="mb" name="mb" type="tel" placeholder="Your phone number" required>
+                    </div>
+                </div>
+
+                <div class="split">
+                    <div class="field">
+                        <label for="userpass">Password</label>
+                        <input id="userpass" name="userpass" type="password" required>
+                    </div>
+                    <div class="field">
+                        <label for="pas">Confirm password</label>
+                        <input id="pas" name="pas" type="password" required>
+                    </div>
+                </div>
+
+                <fieldset>
+                    <legend>Gender</legend>
+                    <div class="radio-group">
+                        <label class="radio-option"><input name="gender" type="radio" value="male"> Male</label>
+                        <label class="radio-option"><input name="gender" type="radio" value="female"> Female</label>
+                        <label class="radio-option"><input name="gender" type="radio" value="other"> Other</label>
+                    </div>
+                </fieldset>
+
+                <div class="split">
+                    <div class="field">
+                        <label for="dob">Date of birth</label>
+                        <input id="dob" name="dob" type="date">
+                    </div>
+                    <div class="field">
+                        <label for="country">Country</label>
+                        <select id="country" name="country">
+                            <option value="india">India</option>
+                            <option value="russia">Russia</option>
+                            <option value="usa">USA</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="address">Address</label>
+                    <textarea id="address" name="address" placeholder="Where are you based?" required></textarea>
+                </div>
+
+                <button type="submit">Submit profile</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
